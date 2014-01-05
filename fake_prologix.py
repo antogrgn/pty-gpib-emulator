@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
-import FakePrologix
+import PTY_Interface
 import PowerSupply
 
-pty = FakePrologix.FakePrologix()
+pty = PTY_Interface.Interface()
 pty.addDevice(PowerSupply.PowerSupply(), 5)
 pty.addDevice(PowerSupply.E3631A(), 3)
 
-pty.printTTY()
+pty.printFilename()
 pty.run()
       	 

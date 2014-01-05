@@ -8,7 +8,7 @@
 
 import Device, PTY_Interface
 
-class Prologix_GPIB_USB(Device):
+class Prologix_GPIB_USB(Device.Device):
 
 ##%% Initialization - Prologix_GPIB_USB()
 ## Does not take arguments, but is VERY important
@@ -33,7 +33,7 @@ class Prologix_GPIB_USB(Device):
 ## the pty_interface and the arguments
 ##
     def handleCMD(self, fpl, cmd, args=[]):
-        out = Device.handleCMD(self, fpl, cmd, args)
+        out = Device.Device.handleCMD(self, fpl, cmd, args)
         if out != "":
             return out
         elif cmd in self.cmds:

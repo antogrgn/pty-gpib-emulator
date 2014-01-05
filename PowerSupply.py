@@ -6,7 +6,7 @@
 ## building off the Device framework
 ## 
 
-import Device
+import Device, Prologix
 
 ## **** Power Supply class ****
 ## by Aidan Macdonald (aidan.plenert.macdonald@gmail.com) 
@@ -14,7 +14,7 @@ import Device
 ## General model of a basic Power Supply
 ## 
 
-class PowerSupply(Device.PrologixAdapter):
+class PowerSupply(Prologix.Prologix_GPIB_USB):
 
 ##%% Initialization PowerSupply(volt, current)
 ## Creates a framework for a Powersupply, but only binds
@@ -25,7 +25,7 @@ class PowerSupply(Device.PrologixAdapter):
 ## voltage and current default to 10
 ##
     def __init__(self, volt=10, cur=10):
-        Device.PrologixAdapter.__init__(self)
+        Prologix.Prologix_GPIB_USB.__init__(self)
         self.addCMD("RST?", self.reset)
 
         self.voltage = volt

@@ -15,11 +15,11 @@
 
 
 import os
-import Device
+import Device, Prologix
 
-class PTY_Interface:
+class Interface:
 
-##%% Initialization - PTY_Interface(default_device, default_address)
+##%% Initialization - Interface(default_device, default_address)
 ## accepts arguments default_device and default_address
 ## the default_device will be connected at the default_address
 ## 
@@ -32,7 +32,9 @@ class PTY_Interface:
 ## if no arguments are given at initialization, defaults are
 ## Device.Prologix_GPIB-USB at address 0
 ##
-    def __init__(self, default_device=Device.Prologix_GPIB_USB, default_address=0):
+    def __init__(self,
+                 default_device=Prologix.Prologix_GPIB_USB(),
+                 default_address=0 ):
         self.m, self.s = os.openpty()
         self.devices = {default_address:default_device}
         self.addr = default_address
