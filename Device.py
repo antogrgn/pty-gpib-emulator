@@ -1,47 +1,33 @@
-#
-# Device Class
-#
+##
+## **** Device Class ****
+## by Aidan Macdonald (aidan.plenert.macdonald@gmail.com)
+##
+## Standard framework for the a Device that is attached
+## to the PTY_Interface
+##
 
-import FakePrologix
 
 class Device:
+##
+##%% No initialization
+##
+
+##%% handleCMD(pty_interface, command, arguments)
+## A device attached to a PTY_Interface will handle commands
+## passed to it from the PTY_Interface by a call made to
+## this function.
+##
+## pty_interface will be a referance to the interface that called
+## this function
+##
+## command will be a string with the text of the command read
+## from the pty device
+##
+## arguments is an array of the arguments to said command read
+## from the pty device
+##
+## The string returned by this function will be written to
+## the pty device
+##
     def handleCMD(self, fpl, cmd, args=[]):
         return ""
-
-class PrologixAdapter(Device):
-    def __init__(self):
-        self.cmds = { "++ver":self.version,
-                      "++addr":self.addr,
-                      "++kill":self.kill}
-
-    def handleCMD(self, fpl, cmd, args=[]):
-        out = Device.handleCMD(self, fpl, cmd, args)
-        if out != "":
-            return out
-        elif cmd in self.cmds:
-            return self.cmds[cmd](fpl, args)
-        else:
-            return ""
-
-    def version(self, fpl, args=[]):
-        return "Prologix Version 1.1 Simulator"
-
-    def addr(self, fpl, args=[]):
-        if args == []:
-            return str(fpl.addr)
-        else:
-            try:
-                fpl.addr = int(args[0])
-                if not fpl.addr in fpl.devices:
-                    fpl.addDevice(PrologixAdapter(), fpl.addr)
-                return ""
-            except:
-                return "ERROR"
-    
-    def kill(self, fpl, args=[]):
-        fpl.running = False
-        return ""
-
-    def addCMD(self, cmd, func):
-        self.cmds[cmd] = func
-

@@ -19,7 +19,7 @@ import Device
 
 class PTY_Interface:
 
-## Initialization - PTY_Interface(default_device, default_address)
+##%% Initialization - PTY_Interface(default_device, default_address)
 ## accepts arguments default_device and default_address
 ## the default_device will be connected at the default_address
 ## 
@@ -37,13 +37,13 @@ class PTY_Interface:
         self.devices = {default_address:default_device}
         self.addr = default_address
 
-## printFilename()
+##%% printFilename()
 ## Prints the path to the PTY device generated (ie /dev/pts/2)
 ##
     def printFilename(self):
         print(os.ttyname(self.s))
 
-## run(readLen)
+##%% run(readLen)
 ## Runs the emulator which will read all statements written from the outside
 ## to the pty device at the location given by self.printFilename(), then
 ## runs what was read through self.handleInput(tty_in) and writes output
@@ -57,7 +57,7 @@ class PTY_Interface:
                 os.write(self.m, tty_out)
 
 
-## handleInput(tty_in)
+##%% handleInput(tty_in)
 ## Recieves raw input that was read from the pty device, and 
 ## breaks it up and send it to the device listed at the current
 ## address. That device must handle the command via dev.handleCMD(cmd, args)
@@ -73,7 +73,7 @@ class PTY_Interface:
 
         yield ""  # Must be a null string to prevent infinite loop
 
-## addDevice(device, address)
+##%% addDevice(device, address)
 ## Preferred way of connecting a device to the interface
 ## at a given address
 ##
