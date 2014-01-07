@@ -2,7 +2,7 @@
 ## <<<< Powersupply Emulators >>>>
 ## by Aidan Macdonald (aidan.plenert.macdonald@gmail.com)
 ## 
-## Contains 2 classes that emulate powersupplies by
+## Contains classes that emulate powersupplies by
 ## building off the Device framework
 ## 
 

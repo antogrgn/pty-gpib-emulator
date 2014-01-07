@@ -1,10 +1,10 @@
 
- **** Prologix_GPIB_USB Class ****
+ == Prologix_GPIB_USB Class ==
 
  A Device that emulates the functionality of the
  Prologix GPIB-USB Controller (prologix.biz)
  
-%% Initialization - Prologix_GPIB_USB()
+* Initialization - Prologix_GPIB_USB()
  Does not take arguments, but is VERY important
  All classes that attempt to inherit this class,
  must call this initialization.
@@ -13,7 +13,7 @@
  to be run. If this dictionary is not created, this class
  does nothing
 
-%% handleCMD(pty_interface, command, arguments)
+* handleCMD(pty_interface, command, arguments)
  See Device.handleCMD documentation
 
  In Prologix_GPIB_USB, this function makes use of the
@@ -21,10 +21,10 @@
  its associated handler, then call the handler and pass in
  the pty_interface and the arguments
 
-%% version(pty, args)
+* version(pty, args)
  Returns the device version
 
-%% addr(pty, args)
+* addr(pty, args)
  If no arguments are given, returns the current address
  of the pty interface
 
@@ -34,10 +34,10 @@
 
  Any errors return "ERROR"
 
-%% kill(pty, args)
+* kill(pty, args)
  Stops the pty interface from running
      
-%% addCMD(command, handler_function)
+* addCMD(command, handler_function)
  Adds a command to the dictionary
  Handler function must be of the form
  func(pty_interface, arguments):
