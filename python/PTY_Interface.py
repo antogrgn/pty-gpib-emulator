@@ -43,7 +43,9 @@ class Interface:
 ## Prints the path to the PTY device generated (ie /dev/pts/2)
 ##
     def printFilename(self):
-        print(os.ttyname(self.s))
+        name = os.ttyname(self.s) 
+        print(name)
+        return name
 
 ##%% run(readLen)
 ## Runs the emulator which will read all statements written from the outside
