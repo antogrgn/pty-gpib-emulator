@@ -16,8 +16,9 @@ class Interface {
   map<int, Device> devices;
   int addr, m, s;
   bool running;
+  string pname;
 
-  Interface(Device *default_device,
+  Interface(Device *default_device=NULL,
 	    int default_address=0);
   ~Interface();
 
