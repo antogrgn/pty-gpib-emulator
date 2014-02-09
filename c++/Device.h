@@ -6,7 +6,6 @@
 
 class Device;
 
-
 #include "PTY_Interface.h"
 #include <vector>
 using namespace std;
