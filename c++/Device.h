@@ -13,6 +13,7 @@ using namespace std;
 class Device {
  public:
   Device();
+  ~Device();
 
   string handleCMD(Interface *fpl,
 		   string cmd,

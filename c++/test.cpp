@@ -8,8 +8,9 @@ int main() {
   Prologix_GPIB_USB *plg = new Prologix_GPIB_USB();
 
   inter->printFilename();
-  
   inter->addDevice(plg, 0);
+
+  inter->run();
 
   delete plg;
   delete inter;
