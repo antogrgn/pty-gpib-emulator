@@ -47,7 +47,7 @@ void Interface::run(int readLen) {
 string Interface::handleInput(string tty_in) {
   string out = "";
   trim(tty_in);
-  Device dev;
+  Device *dev;
   vector<string> cmd;
   vector<string> p;
   string first;
@@ -60,7 +60,7 @@ string Interface::handleInput(string tty_in) {
       boost::split(p, cmd.at(i), boost::is_any_of(" "));
       first = p.at(0);
       p.erase(p.begin());
-      out += dev.handleCMD(this, first, &p) + "\n";
+      out += dev->handleCMD(this, first, &p) + "\n";
     }
   }
 
@@ -68,6 +68,6 @@ string Interface::handleInput(string tty_in) {
 }
 
 void Interface::addDevice(Device *dev, int addr) {
-  
+  this->devices.insert( std::pair<int, Device*>(addr, dev));
 }
 

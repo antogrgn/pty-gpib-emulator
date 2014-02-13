@@ -1,7 +1,7 @@
 
 
 #include "PTY_Interface.h"
-
+#include "Prologix.h"
 
 int main() {
   Interface *inter = new Interface();
@@ -9,8 +9,9 @@ int main() {
 
   inter->printFilename();
   
+  inter->addDevice(plg, 0);
 
-
+  delete plg;
   delete inter;
   return 0;
 }

@@ -12,10 +12,11 @@ using namespace std;
 
 class Device {
  public:
-  virtual string handleCMD(Interface *fpl,
-			   string cmd,
-			   vector<string> *args);
+  Device();
 
+  string handleCMD(Interface *fpl,
+		   string cmd,
+		   vector<string> *args);
 };
 
 #endif

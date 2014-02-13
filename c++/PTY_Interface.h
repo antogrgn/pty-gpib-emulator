@@ -13,7 +13,7 @@ using namespace std;
 
 class Interface {
  public:
-  map<int, Device> devices;
+  map<int, Device*> devices;
   int addr, m, s;
   bool running;
   string pname;
