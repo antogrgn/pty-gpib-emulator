@@ -1,8 +1,8 @@
 CC=g++
-CFLAGS=-c
+CFLAGS=-c -std=c++11
 LDFLAGS=
 LIBRARIES=-lutil
-SOURCES=PTY_Interface.cpp
+SOURCES=PTY_Interface.cpp Prologix.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=
 

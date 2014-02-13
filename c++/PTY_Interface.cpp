@@ -2,6 +2,7 @@
 #include "PTY_Interface.h"
 #include <pty.h>
 #include <iostream>
+#include <unistd.h>
 
 Interface::Interface(Device *default_device,
 		     int default_address) {
@@ -19,7 +20,7 @@ Interface::Interface(Device *default_device,
 }
 
 Interface::~Interface() {
-  
+  close(this->m);
 }
 
 string Interface::printFilename() {

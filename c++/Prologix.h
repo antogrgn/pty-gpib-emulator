@@ -11,6 +11,7 @@
 using namespace std;
 
 
+
 class Prologix_GPIB_USB : public Device {
  public:
   typedef string (Prologix_GPIB_USB::*handler)(Interface *fpl,

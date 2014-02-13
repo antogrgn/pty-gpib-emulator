@@ -45,7 +45,7 @@ class Prologix_GPIB_USB(Device.Device):
 ## Returns the device version
 ##
     def version(self, fpl, args=[]):
-        return "Prologix Version 1.1 Simulator"
+        return "Prologix Version 1.1 Simulator (Python)"
 
 ##%% addr(pty, args)
 ## If no arguments are given, returns the current address
