@@ -2,7 +2,7 @@ CC=g++
 CFLAGS=-c -std=c++11
 LDFLAGS=
 LIBRARIES=-lutil -lboost_system
-SOURCES=PTY_Interface.cpp Prologix.cpp Device.cpp
+SOURCES=PTY_Interface.cpp Prologix.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=
 

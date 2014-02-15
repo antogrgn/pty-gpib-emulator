@@ -3,6 +3,7 @@
 #define DEVICE
 
 #include <string>
+#include <iostream>
 
 class Device;
 
@@ -12,12 +13,11 @@ using namespace std;
 
 class Device {
  public:
-  Device();
-  ~Device();
-
-  string handleCMD(Interface *fpl,
-		   string cmd,
-		   vector<string> *args);
+  virtual string handleCMD(Interface *fpl,
+			   string cmd,
+			   vector<string> *args) {
+    return "";
+  } /**/
 };
 
 #endif

@@ -25,7 +25,7 @@ class Interface {
   string printFilename();
   void run(int readLen=100);
 
-  string handleInput(string tty_in);
+  vector<string> handleInput(string tty_in);
   void addDevice(Device *dev, int addr);
 
 };

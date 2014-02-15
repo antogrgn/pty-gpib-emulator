@@ -3,11 +3,13 @@
 #include "Prologix.h"
 #include <string>
 #include <cstdlib>
+#include <iostream>
+
 
 Prologix_GPIB_USB::Prologix_GPIB_USB() {
   this->addCMD("++ver", &Prologix_GPIB_USB::version);
   this->addCMD("++addr", &Prologix_GPIB_USB::addr);
-  this->addCMD("++kill", &Prologix_GPIB_USB::kill);
+  this->addCMD("++kill", &Prologix_GPIB_USB::kill); 
 }
 
 Prologix_GPIB_USB::~Prologix_GPIB_USB() {
@@ -17,17 +19,17 @@ Prologix_GPIB_USB::~Prologix_GPIB_USB() {
 string Prologix_GPIB_USB::handleCMD(Interface *fpl,
 				    string cmd,
 				    vector<string> *args) {
-  string out = Device::handleCMD(fpl, cmd, args);
+  string out = "";
   handler h;
 
   if (out != "") {
     return out;
   } else if ( this->cmds.count(cmd) > 0 ) {
     h = this->cmds.at(cmd);
-    (this->*h)(fpl, args);
-  } else {
-    return "";
+    return (this->*h)(fpl, args);
   }
+
+  return "";
 }
 
 string Prologix_GPIB_USB::version(Interface *fpl,
