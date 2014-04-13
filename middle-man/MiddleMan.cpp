@@ -42,16 +42,17 @@ string MiddleMan::getPTY() {
 void MiddleMan::run(int readLen) {
   char *tty_in = new char[readLen+1];
   string tty_full;
-  int i;
+  int i=0;
 
   this->running = true;
   while (this->running) {
     tty_full = "";
-    while (read(this->mPTY, tty_in, readLen) >= readLen) {
+    while ((i=read(this->mPTY, tty_in, readLen)) >= readLen) {
+      tty_in[i] = '\0';
       tty_full += tty_in;
     }
+    tty_in[i] = '\0';
     tty_full += tty_in;
-    i = tty_full.find("\n");
 
     this->handleInput(tty_full);
   }

@@ -2,18 +2,18 @@ CC=g++
 CFLAGS=-c -std=c++11
 LDFLAGS=
 LIBRARIES=-lutil
-SOURCES=MiddleMan.cpp
+SOURCES=MiddleMan.cpp simple.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=mid
+EXECUTABLE=simple
 
-all: $(SOURCES) $(OBJECTS)
+all: $(SOURCES) $(OBJECTS) $(EXECUTABLE)
 
 
 $(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@ $(LIBRARIES)
 
 .cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@  $(LIBRARIES)
 
 clean:
 	rm *.o *~ *.gch
