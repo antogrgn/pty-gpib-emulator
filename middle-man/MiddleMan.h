@@ -16,8 +16,12 @@ class MiddleMan {
   int mTTY, sTTY;
   string ptyname;
   bool running;
+  int sleep; // Microseconds
+  FILE *fout;
  public:
-  MiddleMan(const string iotty_name);
+  MiddleMan(const string iotty_name,
+	    const string fout_name="out",
+	    int sleepTime=200);
   ~MiddleMan();
 
   void run(int readLen=100);

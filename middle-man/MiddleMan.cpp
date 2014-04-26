@@ -67,7 +67,9 @@ static void set_noecho(int fd) { // Turn off Slave echo
     std::cout << "Error tcsetattr()" << std::endl;
 }
 
-MiddleMan::MiddleMan(const string tty) {
+MiddleMan::MiddleMan(const string tty,
+		     const string fout_name,
+		     int sleepTime) {
   char name[40];
   
   if (openpty(&this->mPTY, &this->sPTY, name, NULL, NULL) < 0)
@@ -84,10 +86,14 @@ MiddleMan::MiddleMan(const string tty) {
     this->ttyname = tty;
     setPort(this->mTTY);
   }
+  if ( (this->fout = fopen(fout_name.c_str(), "w+")) == NULL )
+    std::cout << "Error upon opening the output file" << std::endl;
+  this->sleep = sleepTime;
 }
 
 MiddleMan::~MiddleMan() {
   close(this->mPTY);
+  fclose(this->fout);
 }
 
 string MiddleMan::getPTY() {
@@ -118,14 +124,20 @@ void MiddleMan::run(int readLen) {
 }
 
 void MiddleMan::handleInput(string tty_in) {
+  string buf;
+
   write(this->mTTY, tty_in.c_str(), tty_in.size());
-  usleep(100);
-  this->log(tty_in, readTTY(this->mTTY));
+  usleep(this->sleep); // microseconds
+  buf = readTTY(this->mTTY);
+  write(this->mPTY, buf.c_str(), buf.size());
+  this->log(tty_in, buf);
 }
 
 
 void MiddleMan::log(string input, string output,
 		    const string format) {
   printf(format.c_str(), input.c_str(), output.c_str());
+  fprintf(this->fout, format.c_str(), input.c_str(), output.c_str());
+  fflush(this->fout);
 }
 
